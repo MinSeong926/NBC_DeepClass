@@ -2,21 +2,23 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
+#include "BaseWeapon.h"
 #include "Shotgun.generated.h"
 
 UCLASS()
-class UNREALDEEPENING_API AShotgun : public AActor
+class UNREALDEEPENING_API AShotgun : public ABaseWeapon
 {
 	GENERATED_BODY()
 	
 public:	
 	AShotgun();
 
-public:
-	UFUNCTION(BlueprintCallable, Category = "Weapon")
-	void FireShotgun();
+protected:
+	virtual void PreFire() override;
+	virtual void ExecuteFire() override;
+	virtual void ApplyRecoil() override;
 
+public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon|Shotgun")
 	int32 PelletCount = 8; // ÇÑ ¹ø¿¡ ¹ß»çµÇ´Â ÃÑ¾Ë(Æç¸´) °³¼ö
 
