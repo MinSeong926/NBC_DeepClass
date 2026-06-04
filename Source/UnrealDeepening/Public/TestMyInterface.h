@@ -1,0 +1,25 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "UObject/Interface.h"
+#include "TestMyInterface.generated.h"
+
+UINTERFACE(MinimalAPI)
+class UTestMyInterface : public UInterface
+{
+	GENERATED_BODY()
+};
+
+class UNREALDEEPENING_API ITestMyInterface
+{
+	GENERATED_BODY()
+
+	
+public:
+
+	//BlueprintNativeEvent -> 블루프린트가 있다면 C++은 무시
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Interaction")
+	void OnFireDetected(float Temperature, FVector HitLocation);
+};
