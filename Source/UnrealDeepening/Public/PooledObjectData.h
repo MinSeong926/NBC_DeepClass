@@ -22,15 +22,19 @@ struct FPooledObjectData
 		ActorName = "default";
 	}
 
+	//어떤 액터를 스폰할 것인가.
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<AActor> ActorTemplate;
 
+	//몇개를 스폰할 것인가
 	UPROPERTY(EditAnywhere)
-	int32 PoolSize;
+	int PoolSize;
 
+	//없으면 추가로 생성할 예정인가
 	UPROPERTY(EditAnywhere)
-	bool bCanGrow;
+	bool CanGrow;
 
+	//액터의 이름은 무엇인가
 	UPROPERTY(EditAnywhere)
 	FString ActorName;
 };
