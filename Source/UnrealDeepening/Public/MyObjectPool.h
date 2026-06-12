@@ -18,7 +18,7 @@ struct FSingleObjectPool
 	TArray<TObjectPtr<class UPooledObject>> PooledObjects;
 };
 
-UCLASS()
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
 class UNREALDEEPENING_API UMyObjectPool : public UActorComponent
 {
 	GENERATED_BODY()
