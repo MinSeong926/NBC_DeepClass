@@ -19,7 +19,7 @@ struct FSingleObjectPool
 };
 
 UCLASS()
-class UNREALDEEPENING_API AMyObjectPool : public AActor
+class UNREALDEEPENING_API UMyObjectPool : public UActorComponent
 {
 	GENERATED_BODY()
 	

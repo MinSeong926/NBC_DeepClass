@@ -2,8 +2,9 @@
 
 
 #include "PooledObject.h"
+#include "MyObjectPool.h"
 
-void UPooledObject::Init(AMyObjectPool* Owner)
+void UPooledObject::Init(UMyObjectPool* Owner)
 {
 	bIsPoolActive = false;
 

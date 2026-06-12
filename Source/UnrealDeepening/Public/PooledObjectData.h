@@ -6,7 +6,6 @@
 #include "PooledObjectData.generated.h"
 
 
-
 USTRUCT(BlueprintType)
 
 struct FPooledObjectData
@@ -32,7 +31,7 @@ struct FPooledObjectData
 
 	//없으면 추가로 생성할 예정인가
 	UPROPERTY(EditAnywhere)
-	bool CanGrow;
+	bool bCanGrow;
 
 	//액터의 이름은 무엇인가
 	UPROPERTY(EditAnywhere)

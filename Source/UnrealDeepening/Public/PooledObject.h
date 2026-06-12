@@ -13,7 +13,7 @@ class UNREALDEEPENING_API UPooledObject : public UActorComponent
 
 public:	
 	
-	void Init(class AMyObjectPool* Owner);
+	void Init(class UMyObjectPool* Owner);
 	
 	// ÀÚ¸ê ¹öÆ°
 	UFUNCTION(BlueprintCallable)
@@ -24,7 +24,7 @@ public:
 
 private:
 
-	TObjectPtr<class AMyObjectPool> ObjectPool;
+	TObjectPtr<class UMyObjectPool> ObjectPool;
 
 	//ÀÚ¸ê¹öÆ°
 	virtual void OnComponentDestroyed(bool bDestroyingHierarchy) override;

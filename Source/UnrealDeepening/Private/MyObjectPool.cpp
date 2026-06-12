@@ -3,7 +3,7 @@
 #include "MyObjectPool.h"
 #include "PooledObject.h"
 
-void AMyObjectPool::BeginPlay()
+void UMyObjectPool::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -27,18 +27,18 @@ void AMyObjectPool::BeginPlay()
 			SpawnedActor->SetActorHiddenInGame(true);
 			SpawnedActor->SetActorEnableCollision(false);
 			SpawnedActor->SetActorTickEnabled(false);
-			SpawnedActor->AttachToActor(this, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+			SpawnedActor->AttachToActor(GetOwner(), FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 		}
 		Pools.Add(CurrentPoolIndex);
 	}
 }
 
-void AMyObjectPool::Broadcast_PoolerCleanup()
+void UMyObjectPool::Broadcast_PoolerCleanup()
 {
 	OnPoolerCleanup.Broadcast();
 }
 
-AActor* AMyObjectPool::GetPooledActor(FString Name)
+AActor* UMyObjectPool::GetPooledActor(FString Name)
 {
 	//우리가 저장한 컴포넌트의 갯수를 받아준다.
 	int32 PoolCount = Pools.Num();
@@ -145,7 +145,7 @@ AActor* AMyObjectPool::GetPooledActor(FString Name)
 	return SpawnedActor;
 }
 
-void AMyObjectPool::RecyclePooledObject(UPooledObject* PoolCompRef)
+void UMyObjectPool::RecyclePooledObject(UPooledObject* PoolCompRef)
 {
 	//회수하기
 	OnPoolerCleanup.RemoveDynamic(PoolCompRef, &UPooledObject::RecycleSelf);
@@ -160,10 +160,10 @@ void AMyObjectPool::RecyclePooledObject(UPooledObject* PoolCompRef)
 	ReturningActor->SetActorEnableCollision(false);
 	ReturningActor->SetActorTickEnabled(false);
 
-	ReturningActor->AttachToActor(this, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+	ReturningActor->AttachToActor(GetOwner(), FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 }
 
-void AMyObjectPool::RecycleActor(AActor* PooledActor)
+void UMyObjectPool::RecycleActor(AActor* PooledActor)
 {
 	if (UPooledObject* PoolCompRef = Cast<UPooledObject>(PooledActor->GetComponentByClass(UPooledObject::StaticClass())))
 	{
@@ -172,7 +172,7 @@ void AMyObjectPool::RecycleActor(AActor* PooledActor)
 }
 
 // 급히 만들기
-void AMyObjectPool::RegenItem(int PoolIndex, int PositionIndex)
+void UMyObjectPool::RegenItem(int PoolIndex, int PositionIndex)
 {
 	//스폰 준비
 	FActorSpawnParameters SpawnParams;
@@ -196,5 +196,5 @@ void AMyObjectPool::RegenItem(int PoolIndex, int PositionIndex)
 	SpawnedActor->SetActorHiddenInGame(true);
 	SpawnedActor->SetActorEnableCollision(false);
 	SpawnedActor->SetActorTickEnabled(false);
-	SpawnedActor->AttachToActor(this, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+	SpawnedActor->AttachToActor(GetOwner(), FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 }
